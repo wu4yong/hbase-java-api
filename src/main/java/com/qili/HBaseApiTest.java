@@ -148,7 +148,7 @@ public class HBaseApiTest {
     @Test
     public void deleteTable() throws IOException {
         init();
-        TableName tableName = TableName.valueOf(TABLE_NAME);
+        TableName tableName = TableName.valueOf("test");
         if (admin.tableExists(tableName)) {
             admin.disableTable(tableName);
             admin.deleteTable(tableName);
@@ -282,7 +282,7 @@ public class HBaseApiTest {
                         " Value: " + Bytes.toString(CellUtil.cloneValue(cell)));
             }
         }
-
+        close();
 
     }
 
