@@ -228,11 +228,11 @@ public class HBaseApiTest {
         TableName tableName = TableName.valueOf(TABLE_NAME);
         Table table = connection.getTable(tableName);
         // 通过bytes类创建字节数组
-        byte[] rowid = Bytes.toBytes("r3");
+        byte[] rowid = Bytes.toBytes("r1");
         //  创建put对象
         Put put = new Put(rowid);
-        put.addColumn(Bytes.toBytes("course"), Bytes.toBytes("chinese"), Bytes.toBytes("80"));
-        put.addColumn(Bytes.toBytes("course"), Bytes.toBytes("english"), Bytes.toBytes("80"));
+        put.addColumn(Bytes.toBytes("course"), Bytes.toBytes("chinese"), Bytes.toBytes("90"));
+        put.addColumn(Bytes.toBytes("course"), Bytes.toBytes("english"), Bytes.toBytes("90"));
         table.put(put);
         System.out.println("insert " + TABLE_NAME + ": data successful!");
         close();
@@ -251,8 +251,8 @@ public class HBaseApiTest {
         Table table = connection.getTable(tableName);
 
         //删除数据
-        Delete delete = new Delete(Bytes.toBytes("r1"));
-        // delete.addColumn(Bytes.toBytes("course"), Bytes.toBytes("englist"));
+        Delete delete = new Delete(Bytes.toBytes("r3"));
+         delete.addColumn(Bytes.toBytes("course"), Bytes.toBytes("english"));
         table.delete(delete);
         System.out.println("delete " + TABLE_NAME + ": data successful!");
         close();
