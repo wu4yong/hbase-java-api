@@ -228,11 +228,11 @@ public class HBaseApiTest {
         TableName tableName = TableName.valueOf(TABLE_NAME);
         Table table = connection.getTable(tableName);
         // 通过bytes类创建字节数组
-        byte[] rowid = Bytes.toBytes("r2");
+        byte[] rowid = Bytes.toBytes("r3");
         //  创建put对象
         Put put = new Put(rowid);
         put.addColumn(Bytes.toBytes("course"), Bytes.toBytes("chinese"), Bytes.toBytes("80"));
-        put.addColumn(Bytes.toBytes("course"), Bytes.toBytes("english"), Bytes.toBytes("90"));
+        put.addColumn(Bytes.toBytes("course"), Bytes.toBytes("english"), Bytes.toBytes("80"));
         table.put(put);
         System.out.println("insert " + TABLE_NAME + ": data successful!");
         close();
@@ -286,6 +286,14 @@ public class HBaseApiTest {
 
     }
 
+    /**
+     * 获取指定记录数据
+     *  多版本命令：
+     *      修改表结构：alter 'student',{NAME=>'course',VERSIONS=>3}
+     *      获取数据：  get 'student','r3',{COLUMN=>'course:chinese',VERSIONS=>3}
+     *
+     * @throws Exception
+     */
     @Test
     public void getRows() throws Exception {
         init();
