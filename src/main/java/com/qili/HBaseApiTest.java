@@ -1,5 +1,7 @@
 package com.qili;
 
+import com.qili.utils.HBaseApiUtils;
+import com.qili.vo.HTableInfo;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.CellUtil;
@@ -316,4 +318,15 @@ public class HBaseApiTest {
         close();
     }
 
+    /**
+     * 测试创建表
+     * @throws IOException
+     */
+    @Test
+    public  void  testUtil() throws IOException {
+        HTableInfo tableInfo = new HTableInfo();
+        tableInfo.setTableName("test2");
+        HBaseApiUtils.createSchemaTables(tableInfo);
+        System.out.println("Table created");
+    }
 }
